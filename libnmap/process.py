@@ -410,7 +410,7 @@ class NmapProcess(Thread):
                         self.__elapsed = xmlnode.attributes['elapsed'].value
                         self.__summary = xmlnode.attributes['summary'].value
                         rval = True
-        except:
+        except Exception:
             pass
         return rval
 
@@ -617,6 +617,3 @@ def main():
         print("state: {0} (rc: {1})").format(nm.state, nm.rc)
         print("Error: {stderr}").format(stderr=nm.stderr)
         print("Result: {0}").format(nm.stdout)
-
-if __name__ == '__main__':
-    main()

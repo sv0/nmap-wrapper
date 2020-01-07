@@ -86,7 +86,7 @@ class NmapReport(object):
     @property
     def startedstr(self):
         """
-            Accessor returning a human readable string of when the 
+            Accessor returning a human readable string of when the
             scan was started
 
             :return: string
@@ -139,9 +139,7 @@ class NmapReport(object):
 
     @property
     def numservices(self):
-        """
-            Accessor returning the number of services the 
-            scan attempted to enumerate.
+        """Accessor returning the number of services the scan attempted to enumerate.
 
             :return: integer
         """

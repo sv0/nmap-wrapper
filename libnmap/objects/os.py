@@ -76,7 +76,7 @@ class NmapOSMatch(object):
             for _osclass in osmatch_dict['osclasses']:
                 try:
                     _osclassobj = NmapOSClass(_osclass)
-                except:
+                except Exception:
                     raise Exception("Could not create NmapOSClass object")
                 self._osclasses.append(_osclassobj)
         except KeyError:

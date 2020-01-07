@@ -88,7 +88,7 @@ class NmapParser(object):
 
         try:
             root = ET.fromstring(nmap_data)
-        except:
+        except Exception:
             raise NmapParserException("Wrong XML structure: cannot parse data")
 
         nmapobj = None
@@ -644,7 +644,7 @@ class NmapParser(object):
         if isinstance(elt_data, str):
             try:
                 xelement = ET.fromstring(elt_data)
-            except:
+            except Exception:
                 raise NmapParserException("Error while trying "
                                           "to instanciate XML Element from "
                                           "string {0}".format(elt_data))
@@ -680,7 +680,7 @@ class NmapParser(object):
                     raise NmapParserException("Error while trying to build-up "
                                               "element attributes: empty "
                                               "attribute {0}".format(dkey))
-        except:
+        except Exception:
             raise
         return rval
 
