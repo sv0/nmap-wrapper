@@ -472,7 +472,7 @@ class NmapHost(object):
 
         return r.get('reasons', None)
 
-    def get_dict(self):
+    def as_dict(self):
         """
             Return a dict representation of the object.
 

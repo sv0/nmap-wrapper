@@ -328,7 +328,7 @@ class NmapReport(object):
             rval = True
         return rval
 
-    def get_dict(self):
+    def as_dict(self):
         """
             Return a python dict representation of the NmapReport object.
             This is used to diff() NmapReport objects via NmapDiff.

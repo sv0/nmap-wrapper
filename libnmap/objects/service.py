@@ -1,6 +1,8 @@
 # -*- coding: utf-8 -*-
-from libnmap.diff import NmapDiff
-from libnmap.objects.os import CPE
+import warnings
+
+from .. diff import NmapDiff
+from .. objects.os import CPE
 
 
 class NmapService(object):
@@ -11,7 +13,7 @@ class NmapService(object):
         Depending on the scanning options, some additional details might be
         available or not. Like banner or extra datas from NSE (nmap scripts).
     """
-    def __init__(self, portid, protocol='tcp', state=None,
+    def __init__(self, portid: int, protocol='tcp', state=None,
                  service=None, owner=None, service_extras=None):
         """
             Constructor
@@ -286,17 +288,27 @@ class NmapService(object):
         return "{0}.{1}".format(self.protocol, self.port)
 
     def get_dict(self):
-        """
-            Return a python dict representation of the NmapService object.
+        warnings.warn(
+            "as_dict method was deprecated. Use as_dict() instead.",
+            DeprecationWarning
+        )
+        return self.as_dict()
 
-            This is used to diff() NmapService objects via NmapDiff.
+    def as_dict(self) -> dict:
+        """Returns Python dict representation of the NmapService object.
+           It is used by diff() NmapService objects via NmapDiff.
 
-            :return: dict
+           :return: dict
         """
-        return ({'id': str(self.id), 'port': str(self.port),
-                 'protocol': self.protocol, 'banner': self.banner,
-                 'service': self.service, 'state': self.state,
-                 'reason': self.reason})
+        return {
+            'id': str(self.id),
+            'port': str(self.port),
+            'protocol': self.protocol,
+            'banner': self.banner,
+            'service': self.service,
+            'state': self.state,
+            'reason': self.reason
+        }
 
     def diff(self, other):
         """

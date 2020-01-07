@@ -51,7 +51,7 @@ class NmapDiff(DictDiffer):
 
         Each of the returns a python set() of key which have changed in the
         compared objects. To check the different keys that could be returned,
-        refer to the get_dict() method of the objects you which to
+        refer to the as_dict() method of the objects you which to
         compare (i.e: libnmap.objects.NmapHost, NmapService,...).
     """
     def __init__(self, nmap_obj1, nmap_obj2):
@@ -66,8 +66,8 @@ class NmapDiff(DictDiffer):
            nmap_obj1.id != nmap_obj2.id):
             raise NmapDiffException("Comparing objects with non-matching id")
 
-        self.object1 = nmap_obj1.get_dict()
-        self.object2 = nmap_obj2.get_dict()
+        self.object1 = nmap_obj1.as_dict()
+        self.object2 = nmap_obj2.as_dict()
 
         DictDiffer.__init__(self, self.object1, self.object2)
 
