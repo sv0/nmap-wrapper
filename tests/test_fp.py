@@ -9,15 +9,18 @@ from libnmap.parser import NmapParser
 class TestNmapFP(unittest.TestCase):
     def setUp(self):
         fdir = os.path.dirname(os.path.realpath(__file__))
-        self.flist_full = [{ 'file': "%s/%s" % (fdir, 'files/1_os_banner_scripts.xml'), 'os': 1},
-                { 'file': "%s/%s" % (fdir, 'files/2_hosts_version.xml'), 'os': 1},
-                { 'file': "%s/%s" % (fdir, 'files/1_hosts_banner_ports_notsyn.xml'), 'os': 0},
-                { 'file': "%s/%s" % (fdir, 'files/1_hosts_banner.xml'), 'os': 0},
-                { 'file': "%s/%s" % (fdir, 'files/1_hosts_down.xml'), 'os': 0}]
+        self.flist_full = [
+                {'file': "%s/%s" % (fdir, 'files/1_os_banner_scripts.xml'), 'os': 1},  # noqa E501
+                {'file': "%s/%s" % (fdir, 'files/2_hosts_version.xml'), 'os': 1},  # noqa E501
+                {'file': "%s/%s" % (fdir, 'files/1_hosts_banner_ports_notsyn.xml'), 'os': 0},  # noqa E501
+                {'file': "%s/%s" % (fdir, 'files/1_hosts_banner.xml'), 'os': 0},  # noqa E501
+                {'file': "%s/%s" % (fdir, 'files/1_hosts_down.xml'), 'os': 0}
+        ]
         self.flist = self.flist_full
-        self.flist_os =  {'nv6': {'file': "%s/%s" % (fdir, 'files/full_sudo6.xml'), 'os': 0},
-                'fullscan': { 'file': "%s/%s" % (fdir, 'files/fullscan.xml'), 'os': 0},
-                'nv5': { 'file': "%s/%s" % (fdir, 'files/os_scan5.xml'), 'os': 0}
+        self.flist_os = {
+            'nv6': {'file': "%s/%s" % (fdir, 'files/full_sudo6.xml'), 'os': 0},
+            'fullscan': {'file': "%s/%s" % (fdir, 'files/fullscan.xml'), 'os': 0},  # noqa E501
+            'nv5': { 'file': "%s/%s" % (fdir, 'files/os_scan5.xml'), 'os': 0}
         }
         self.fos_class_probabilities = "{0}/{1}".format(fdir, "files/test_osclass.xml")
 
@@ -33,7 +36,10 @@ class TestNmapFP(unittest.TestCase):
                     raise Exception
 
     def test_osclasses_new(self):
-        oclines = [[[{'type': 'general purpose', 'accuracy': 100, 'vendor': 'Apple', 'osfamily': 'Mac OS X', 'osgen': '10.8.X'},
+        oclines = [
+            [
+                [
+                    {'type': 'general purpose', 'accuracy': 100, 'vendor': 'Apple', 'osfamily': 'Mac OS X', 'osgen': '10.8.X'},
                     {'type': 'phone', 'accuracy': 100, 'vendor': 'Apple', 'osfamily': 'iOS', 'osgen': '5.X'},
                     {'type': 'media device', 'accuracy': 100, 'vendor': 'Apple', 'osfamily': 'iOS', 'osgen': '5.X'}]],
                     [
@@ -122,7 +128,7 @@ class TestNmapFP(unittest.TestCase):
         cpelist = ['cpe:/a:openbsd:openssh:5.9p1','cpe:/o:linux:linux_kernel']
         rep = NmapParser.parse_fromfile(self.flist_os['fullscan']['file'])
         h1 = rep.hosts.pop()
-        s = h1.services[0]
+        s = list(h1.services)[0]
         self.assertEqual(s.cpelist[0].cpestring, cpelist[0])
         self.assertEqual(s.cpelist[1].cpestring, cpelist[1])
 
@@ -137,7 +143,7 @@ class TestNmapFP(unittest.TestCase):
         self.assertEqual(osc.accuracy, 100)
 
         #<osclass type="general purpose" vendor="Linux" osfamily="Linux" osgen="3.X" accuracy="100"><cpe>cpe:/o:linux:linux_kernel:3</cpe></osclass>
-        
+
 
 if __name__ == '__main__':
     test_suite = ['test_fp', 'test_fpv6', 'test_osmatches_new', 'test_osclasses_new',
