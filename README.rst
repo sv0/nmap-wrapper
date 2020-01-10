@@ -4,7 +4,8 @@ Python Nmap Wrapper
 Code status
 -----------
 
-|Build Status|
+.. image:: https://circleci.com/gh/sv0/nmap-wrapper/tree/master.svg?style=svg
+    :target: https://circleci.com/gh/sv0/nmap-wrapper/tree/master
 
 Use cases
 ---------
@@ -77,3 +78,4 @@ https://travis-ci.org/sv0/nmap-wrapper
 .. _read the docs: https://nmap-wrapper.readthedocs.org
 
 .. _documentation: https://nmap-wrapper.readthedocs.org
+
