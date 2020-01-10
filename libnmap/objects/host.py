@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 
-from libnmap.diff import NmapDiff
-from libnmap.objects.os import NmapOSFingerprint
+from .. diff import NmapDiff
+from .. objects.os import NmapOSFingerprint
 
 
 class NmapHost(object):
@@ -244,7 +244,9 @@ class NmapHost(object):
 
             :return: array of NmapService
         """
-        return self._services
+
+        for service in self._services:
+            yield service
 
     def get_ports(self):
         """
