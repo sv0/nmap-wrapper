@@ -395,6 +395,6 @@ class NmapOSFingerprint(object):
     def __repr__(self):
         rval = ""
         for _osmatch in self.osmatches:
-            rval += "\r\n{0}".format(_osmatch)
-        rval += "Fingerprints: ".format(self.fingerprint)
+            rval += f"\n{_osmatch}"
+        rval += f"Fingerprints: {self.fingerprint}"
         return rval
